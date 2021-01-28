@@ -4,7 +4,8 @@
   "description": "Are you scaled correctly?",
   "private": true,
   "scripts": {
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "build": "webpack"
   },
   "devServer": {
     "contentBase": "./dist"
