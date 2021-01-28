@@ -1,0 +1,30 @@
+{
+  "name": "Scale Checker",
+  "version": "0.0.1",
+  "description": "Are you scaled correctly?",
+  "private": true,
+  "scripts": {
+    "start": "webpack serve --open"
+  },
+  "devServer": {
+    "contentBase": "./dist"
+  },
+  "devDependencies": {
+    "@webpack-cli/serve": "^1.2.2",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^1.3.4",
+    "style-loader": "^1.3.0",
+    "webpack": "^4.46.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.2.1",
+    "autoprefixer": "^10.2.3",
+    "html-webpack-plugin": "^4.5.1",
+    "postcss": "^8.2.4",
+    "postcss-import": "^14.0.0",
+    "postcss-loader": "^4.2.0",
+    "tailwindcss": "^2.0.2"
+  }
+}
