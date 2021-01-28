@@ -10,7 +10,7 @@ jobs:
     - name: Install Dependencies
       run: npm install
     - name: Install webpack-cli 
-      run: npm install -g webpack-cli
+      run: npm install webpack-cli
     - name: make site 
       run: npm run build
       env: 
