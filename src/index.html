@@ -1,6 +1,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="main.css">
+    <script src="app.js" async defer></script>
   </head>
   <body class="min-h-screen bg-gray-100">
     <div class="py-10">
@@ -36,13 +37,13 @@
                             Arrival rate of requests
                           </label>
                           <div class="mt-1 relative rounded-md shadow-sm">
-                            <input type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="10">
+                            <input type="text" name="arrivalrate" id="arrivalrate" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="10">
                             <div class="absolute inset-y-0 right-0 flex items-center">
-                              <label for="currency" class="sr-only">per unit of time</label>
-                              <select id="currency" name="currency" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md">
-                                <option>per sec</option>
-                                <option>per min</option>
-                                <option>per day</option>
+                              <label for="timeunit" class="sr-only">per unit of time</label>
+                              <select id="timeunit" name="timeunit" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md">
+                                <option value="1">per sec</option>
+                                <option value="60">per min</option>
+                                <option value="86400">per day</option>
                               </select>
                             </div>
                           </div>
@@ -76,16 +77,6 @@
                       <form action="#" method="POST">
                         <div class="grid grid-cols-6 gap-6">
                           <div class="col-span-6 sm:col-span-3">
-                            <label for="first_name" class="block text-sm font-medium text-gray-700"># of processes per "box"</label>
-                            <input type="text" name="first_name" id="first_name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                          </div>
-          
-                          <div class="col-span-6 sm:col-span-3">
-                            <label for="last_name" class="block text-sm font-medium text-gray-700"># of threads per process</label>
-                            <input type="text" name="last_name" id="last_name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                          </div>
-    
-                          <div class="col-span-6 sm:col-span-3">
                             <label for="country" class="block text-sm font-medium text-gray-700">Language</label>
                             <select id="country" name="country" autocomplete="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                               <option>Ruby (MRI)</option>
@@ -106,15 +97,31 @@
                             </select>
                           </div>
 
-                          <div class="col-span-6 sm:col-span-3">
+                          <div class="col-span-6 sm:col-span-2">
+                            <label for="box_count" class="block text-sm font-medium text-gray-700"># of "boxes"</label>
+                            <input type="text" name="box_count" id="box_count" placeholder="2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          </div>
+
+                          <div class="col-span-6 sm:col-span-2">
+                            <label for="procs_per_box" class="block text-sm font-medium text-gray-700"># of processes per "box"</label>
+                            <input type="text" name="procs_per_box" id="procs_per_box"  placeholder="4" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          </div>
+
+                          <div class="col-span-6 sm:col-span-2">
+                            <label for="percent_io" class="block text-sm font-medium text-gray-700">% time in I/O wait</label>
+                            <input type="text" name="percent_io" id="percent_io"  placeholder="50" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          </div>
+          
+                          <div class="col-span-6 sm:col-span-2">
+                            <label for="threads_per_box" class="block text-sm font-medium text-gray-700"># of threads per process</label>
+                            <input type="text" name="threads_per_box" id="threads_per_box" placeholder="1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                          </div>
+
+
+                          <div class="col-span-3 sm:col-span-2">
                             <label for="price" class="block text-sm font-medium text-gray-700">vCPU per "box"</label>
                             <div class="mt-1 relative rounded-md shadow-sm">
-                              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <span class="text-gray-500 sm:text-sm">
-                                  
-                                </span>
-                              </div>
-                              <input type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="1" aria-describedby="price-currency">
+                              <input type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="1" aria-describedby="price-currency">
                               <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                 <span class="text-gray-500 sm:text-sm" id="price-currency">
                                   vCPU
@@ -123,15 +130,10 @@
                             </div>
                           </div>
 
-                          <div class="col-span-6 sm:col-span-3">
+                          <div class="col-span-3 sm:col-span-2">
                             <label for="price" class="block text-sm font-medium text-gray-700">Memory per "box"</label>
                             <div class="mt-1 relative rounded-md shadow-sm">
-                              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <span class="text-gray-500 sm:text-sm">
-                                  
-                                </span>
-                              </div>
-                              <input type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="2" aria-describedby="price-currency">
+                              <input type="text" name="price" id="price" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-3 pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="2" aria-describedby="price-currency">
                               <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                 <span class="text-gray-500 sm:text-sm" id="price-currency">
                                   GB
@@ -147,12 +149,10 @@
               </div>
               <div class="static">
                 <div class="fixed bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
-                    sideform<br>
-                    sideform<br>
-                    sideform<br>
-                    sideform<br>
+                    <p id="carried-traffic">Carried Traffic: <span id="carried-calculated"></span></p>
+                    <p id="offered-traffic">Offered Traffic: <span id="offered-calculated"></span></p>
+                    <p id="utilization">Average Utilization: <span id="utilization-calculated"></span></p>
                 </div>
-                
               </div>
             </div>
           </div>
